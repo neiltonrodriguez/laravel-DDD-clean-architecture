@@ -7,11 +7,14 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->uuid('id')->primary();
+            $table->string('product_name')->index();;
             $table->text('description')->nullable();
+            $table->integer('quantity_available');
             $table->decimal('price', 10, 2);
-            $table->timestamps();
+            $table->string('category')->index();;
+            $table->string('sku')->unique();
+            $table->timestamps(); 
         });
     }
 
